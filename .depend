@@ -1,0 +1,4 @@
+main.o: main.cpp simulator.h node.h send_status.h resend.h
+simulator.o: simulator.cpp simulator.h node.h send_status.h resend.h
+resend.o: resend.cpp resend.h send_status.h
+node.o: node.cpp node.h
