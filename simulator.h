@@ -6,11 +6,22 @@
 #include "send_status.h"
 #include "resend.h"
 
+struct StepData
+{
+	SendStatus outcome;
+	int backlog;
+	double estimatedBacklog;
+	int arrivals;
+	int departures;
+	double averageDelay;
+};
+
 class Simulator
 {
 public:
     Simulator(int nodes, double arrivalRate, double resendChance);
-    void step();
+    ~Simulator();
+    StepData step();
 
 private:
 	std::vector<Node*> _nodes;
@@ -22,6 +33,9 @@ private:
 	double _resendProbability;
 	bool _bayesian;
 	BayesianCalculator _bayesianCalculator;
+	int _step;
+	int _departures;
+	int _totalDelay;
 };
 
 #endif
